@@ -49,12 +49,6 @@ namespace RacetrackSimulator
             };
         }
 
-        public void SetUpTrack()
-        {
-            
-        }
-
-
         private void race_Click(object sender, EventArgs e)
         {
             foreach (Greyhound dog in Dogs)
