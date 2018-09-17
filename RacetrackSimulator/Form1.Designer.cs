@@ -294,6 +294,7 @@
             this.race.TabIndex = 13;
             this.race.Text = "Let\'s Race!";
             this.race.UseVisualStyleBackColor = true;
+            this.race.Click += new System.EventHandler(this.race_Click);
             // 
             // Form1
             // 
