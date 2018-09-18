@@ -53,7 +53,7 @@ namespace RacetrackSimulator
             //Initialize all the guy objects
             guys[0] = new Guy()
             {
-                Cash = 0,
+                Cash = 5,
                 MyBet = null,
                 MyLabel = joeBetLabel,
                 MyRadioButton = joeRadioButton,
@@ -79,15 +79,63 @@ namespace RacetrackSimulator
             //Set the labels
             foreach (Guy guy in guys)
             {
+                guy.MyBet = new Bet();
+                guy.ClearBet();
                 guy.UpdateLabels();
             }
+
+            minimumBetLabel.Text = $@"Minimum bet is ${BetAmount.Minimum}";
         }
 
         private void race_Click(object sender, EventArgs e)
         {
             foreach (Greyhound dog in Dogs)
             {
-                dog.Run();
+                if (dog.Run())
+                {
+                    MessageBox.Show($@"{dog.MyPictureBox.Name} Wins!");
+                    dog.TakeStartingPosition();
+                }
+            }
+        }
+
+        private void joeRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            NameLabel.Text = guys[0].Name;
+        }
+
+        private void bobRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            NameLabel.Text = guys[1].Name;
+        }
+
+        private void alRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            NameLabel.Text = guys[2].Name;
+        }
+
+        private void PlaceBet_Click(object sender, EventArgs e)
+        {
+            if (guys[0].MyRadioButton.Checked)
+            {
+                if (guys[0].PlaceBet((int)BetAmount.Value, (int)DogToWin.Value))
+                {
+                    guys[0].UpdateLabels();
+                }
+            }
+            if (guys[1].MyRadioButton.Checked)
+            {
+                if (guys[1].PlaceBet((int)BetAmount.Value, (int)DogToWin.Value))
+                {
+                    guys[1].UpdateLabels();
+                }
+            }
+            if (guys[2].MyRadioButton.Checked)
+            {
+                if (guys[2].PlaceBet((int)BetAmount.Value, (int)DogToWin.Value))
+                {
+                    guys[2].UpdateLabels();
+                }
             }
         }
     }

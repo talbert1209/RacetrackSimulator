@@ -8,8 +8,6 @@
 
         public string GetDescription(Guy bettor)
         {
-            // this.Bettor associates a reference from the Better field in the Bet class to the guy object that gets passed
-            // through the parameter in GetDescription().
             Bettor = bettor;
             if (Amount > 0)
             {

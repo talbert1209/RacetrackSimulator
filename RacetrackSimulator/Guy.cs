@@ -12,26 +12,28 @@ namespace RacetrackSimulator
 
         public void UpdateLabels()
         {
-            MyBet = new Bet();
             MyLabel.Text = MyBet.GetDescription(this);
             MyRadioButton.Text = $@"{Name} has ${Cash} dollars";
         }
 
         public bool PlaceBet(int betAmount, int dogToWin)
         {
+            MyBet = new Bet(){Amount = betAmount, Bettor = this, Dog = dogToWin};
+
             if (betAmount <= Cash)
             {
                 MyBet.Amount = betAmount;
                 MyBet.Dog = dogToWin;
                 return true;
             }
-
+            ClearBet();
+            UpdateLabels();
             return false;
         }
 
         public void ClearBet()
         {
-            MyBet = null;
+            MyBet.Amount = 0;
         }
 
         public void Collect(int winner)
