@@ -17,19 +17,28 @@ namespace RacetrackSimulator
             MyRadioButton.Text = $@"{Name} has ${Cash} dollars";
         }
 
-        public bool PlaceBet()
+        public bool PlaceBet(int betAmount, int dogToWin)
         {
-            return true;
+            if (betAmount <= Cash)
+            {
+                MyBet.Amount = betAmount;
+                MyBet.Dog = dogToWin;
+                return true;
+            }
+
+            return false;
         }
 
         public void ClearBet()
         {
-
+            MyBet = null;
         }
 
-        public void Collect()
+        public void Collect(int winner)
         {
-
+            Cash += MyBet.PayOut(winner);
+            ClearBet();
+            UpdateLabels();
         }
     }
 }
