@@ -12,7 +12,9 @@ namespace RacetrackSimulator
 
         public void UpdateLabels()
         {
-
+            MyBet = new Bet();
+            MyLabel.Text = MyBet.GetDescription(this);
+            MyRadioButton.Text = $@"{Name} has ${Cash} dollars";
         }
 
         public bool PlaceBet()

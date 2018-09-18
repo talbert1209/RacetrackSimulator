@@ -13,12 +13,14 @@ namespace RacetrackSimulator
     public partial class Form1 : Form
     {
         Greyhound[] Dogs = new Greyhound[4];
+        Guy[] guys = new Guy[3];
         Random myRandom = new Random();
        
         public Form1()
         {
             InitializeComponent();
 
+            //Initialize all the dog objects 
             Dogs[0] = new Greyhound()
             {
                 MyPictureBox = pictureBox2,
@@ -47,6 +49,38 @@ namespace RacetrackSimulator
                 RacetrackLength = pictureBox1.Width - pictureBox5.Width,
                 Randomizer = myRandom
             };
+
+            //Initialize all the guy objects
+            guys[0] = new Guy()
+            {
+                Cash = 0,
+                MyBet = null,
+                MyLabel = joeBetLabel,
+                MyRadioButton = joeRadioButton,
+                Name = "Joe"
+            };
+            guys[1] = new Guy()
+            {
+                Cash = 0,
+                MyBet = null,
+                MyLabel = bobBetLabel,
+                MyRadioButton = bobRadioButton,
+                Name = "Bob"
+            };
+            guys[2] = new Guy()
+            {
+                Cash = 0,
+                MyBet = null,
+                MyLabel = alBetLabel,
+                MyRadioButton = alRadioButton,
+                Name = "Al"
+            };
+
+            //Set the labels
+            foreach (Guy guy in guys)
+            {
+                guy.UpdateLabels();
+            }
         }
 
         private void race_Click(object sender, EventArgs e)
