@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RacetrackSimulator
@@ -53,7 +46,7 @@ namespace RacetrackSimulator
             //Initialize all the guy objects
             guys[0] = new Guy()
             {
-                Cash = 5,
+                Cash = 50,
                 MyBet = null,
                 MyLabel = joeBetLabel,
                 MyRadioButton = joeRadioButton,
@@ -61,7 +54,7 @@ namespace RacetrackSimulator
             };
             guys[1] = new Guy()
             {
-                Cash = 0,
+                Cash = 75,
                 MyBet = null,
                 MyLabel = bobBetLabel,
                 MyRadioButton = bobRadioButton,
@@ -69,7 +62,7 @@ namespace RacetrackSimulator
             };
             guys[2] = new Guy()
             {
-                Cash = 0,
+                Cash = 45,
                 MyBet = null,
                 MyLabel = alBetLabel,
                 MyRadioButton = alRadioButton,
@@ -89,14 +82,8 @@ namespace RacetrackSimulator
 
         private void race_Click(object sender, EventArgs e)
         {
-            foreach (Greyhound dog in Dogs)
-            {
-                if (dog.Run())
-                {
-                    MessageBox.Show($@"{dog.MyPictureBox.Name} Wins!");
-                    dog.TakeStartingPosition();
-                }
-            }
+            timer1.Start();
+            bettingParlor.Enabled = false;
         }
 
         private void joeRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -135,6 +122,32 @@ namespace RacetrackSimulator
                 if (guys[2].PlaceBet((int)BetAmount.Value, (int)DogToWin.Value))
                 {
                     guys[2].UpdateLabels();
+                }
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (Dogs[i].Run())
+                {
+                    var winner = i + 1;
+                    timer1.Stop();
+                    MessageBox.Show($@"Dog number {winner} wins!", @"We Have A Winner");
+
+                    foreach (Guy guy in guys)
+                    {
+                        guy.Collect(winner);
+                    }
+
+                    foreach (Greyhound dog in Dogs)
+                    {
+                        dog.TakeStartingPosition();
+                    }
+
+                    bettingParlor.Enabled = true;
+                    break;
                 }
             }
         }

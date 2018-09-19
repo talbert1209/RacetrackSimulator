@@ -8,12 +8,12 @@ namespace RacetrackSimulator
         public int StartingPosition;
         public int RacetrackLength;
         public PictureBox MyPictureBox = null;
-        public int Location = 0;
+        public int Location;
         public Random Randomizer;
 
         public bool Run()
         {
-            var speed = Randomizer.Next(1, 15);
+            var speed = Randomizer.Next(1, 22);
             Location += speed;
             MyPictureBox.Left = StartingPosition + Location;
 

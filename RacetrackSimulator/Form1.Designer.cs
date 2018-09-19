@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.bettingParlor = new System.Windows.Forms.GroupBox();
             this.race = new System.Windows.Forms.Button();
@@ -49,6 +50,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.bettingParlor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DogToWin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BetAmount)).BeginInit();
@@ -300,6 +302,10 @@
             this.pictureBox5.TabIndex = 5;
             this.pictureBox5.TabStop = false;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -351,6 +357,7 @@
         private System.Windows.Forms.RadioButton bobRadioButton;
         private System.Windows.Forms.RadioButton joeRadioButton;
         private System.Windows.Forms.Label minimumBetLabel;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
